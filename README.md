@@ -5,7 +5,7 @@ Among the most groundbreaking advancements developed in the 21st century, genome
 ## Workflow
 ![alt text](https://github.com/joshuamwang/RNA-Seq_Analysis/blob/master/figure-animated.gif "workflow")
 
-We will largely be focused on identifying differentially expressed (DE) genes, which follows the steps highlighted in red.
+We will largely focus on identifying differentially expressed (DE) genes, which follows the steps highlighted in red.
 
 
 ## Installation
