@@ -81,7 +81,7 @@ In particular, the per base sequence quality graph reports the quality score acr
   <img src="https://github.com/joshuamwang/RNA-Seq_Analysis/blob/master/fastqc.png">
 </p>
 
-We want to aim for quality scores >= 28. **Low quality read scores require a revisit to wet lab validation. Only read samples that pass FastQC should procede forward.**
+We want to aim for quality scores >= 28. **Low quality read scores require a revisit to wet lab validation. Only read samples that pass FastQC should proceed forward.**
 
 **2\) Align Reads to Reference Genome**
 
