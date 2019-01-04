@@ -171,36 +171,36 @@ library('edgeR')
 
 compList <- c("A_1_counts.txt","A_2_counts.txt","B_1_counts.txt","B_2_counts.txt")
 
-for(comp in compList){
-  comp1 <- unlist(strsplit(comp,split="_"))[1]
-  comp2 <- unlist(strsplit(comp,split="_"))[2]
-  
-  a <- read.table(as.character(compList[1]),row.names=1,col.names=c("Symbol","Counts"),stringsAsFactors=F)
-  b <- read.table(as.character(compList[1]),row.names=1,col.names=c("Symbol","Counts"),stringsAsFactors=F)
-  d <- read.table(as.character(compList[1]),row.names=1,col.names=c("Symbol","Counts"),stringsAsFactors=F)
-  e <- read.table(as.character(compList[1]),row.names=1,col.names=c("Symbol","Counts"),stringsAsFactors=F)
 
-  x <- cbind(a,b[rownames(a),],d[rownames(a),],e[rownames(a),])
-  group <- factor(c(1,1,2,2))
+comp1 <- unique(sapply(compList,function(x){unlist(strsplit(x,split="_")[[1]][1])}))[1]
+comp2 <- unique(sapply(compList,function(x){unlist(strsplit(x,split="_")[[1]][1])}))[2]
   
-  y <- DGEList(counts=x,group=group)
+a <- read.table(as.character(compList[1]),row.names=1,col.names=c("Symbol","Counts"),stringsAsFactors=F)
+b <- read.table(as.character(compList[1]),row.names=1,col.names=c("Symbol","Counts"),stringsAsFactors=F)
+d <- read.table(as.character(compList[1]),row.names=1,col.names=c("Symbol","Counts"),stringsAsFactors=F)
+e <- read.table(as.character(compList[1]),row.names=1,col.names=c("Symbol","Counts"),stringsAsFactors=F)
+
+x <- cbind(a,b[rownames(a),],d[rownames(a),],e[rownames(a),])
+group <- factor(c(1,1,2,2))
   
-  keep <- rowSums(cpm(y)>1) >= 2
-  y <- y[keep, , keep.lib.sizes=FALSE]
+y <- DGEList(counts=x,group=group)
   
-  y <- calcNormFactors(y)
-  design <- model.matrix(~group)
-  y <- estimateCommonDisp(y)
-  y <- estimateTagwiseDisp(y)
+keep <- rowSums(cpm(y)>1) >= 2
+y <- y[keep, , keep.lib.sizes=FALSE]
   
-  all <- exactTest(y,pair=c(1,2))
+y <- calcNormFactors(y)
+design <- model.matrix(~group)
+y <- estimateCommonDisp(y)
+y <- estimateTagwiseDisp(y)
   
-  write.csv(data.frame(topTags(all,n=10000)),paste0(comp1,"vs",comp2,"_ALL.csv"))
-  temp <- data.frame(topTags(all,sort.by="PValue",p.value=0.05,n=10000))
-  temp <- temp[abs(temp$logFC)>=2,]
+all <- exactTest(y,pair=c(1,2))
   
-  write.csv(temp,paste0(comp1,"vs",comp2,"_FILTERED.csv"))
-}
- ```
+write.csv(data.frame(topTags(all,n=10000)),paste0(comp1,"vs",comp2,"_ALL.csv"))
+temp <- data.frame(topTags(all,sort.by="PValue",p.value=0.05,n=10000))
+temp <- temp[abs(temp$logFC)>=2,]
+  
+write.csv(temp,paste0(comp1,"vs",comp2,"_FILTERED.csv"))
+
+```
 
 
