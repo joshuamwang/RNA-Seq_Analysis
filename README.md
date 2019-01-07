@@ -176,9 +176,9 @@ comp1 <- unique(sapply(compList,function(x){unlist(strsplit(x,split="_")[[1]][1]
 comp2 <- unique(sapply(compList,function(x){unlist(strsplit(x,split="_")[[1]][1])}))[2]
   
 a <- read.table(as.character(compList[1]),row.names=1,col.names=c("Symbol","Counts"),stringsAsFactors=F)
-b <- read.table(as.character(compList[1]),row.names=1,col.names=c("Symbol","Counts"),stringsAsFactors=F)
-d <- read.table(as.character(compList[1]),row.names=1,col.names=c("Symbol","Counts"),stringsAsFactors=F)
-e <- read.table(as.character(compList[1]),row.names=1,col.names=c("Symbol","Counts"),stringsAsFactors=F)
+b <- read.table(as.character(compList[2]),row.names=1,col.names=c("Symbol","Counts"),stringsAsFactors=F)
+d <- read.table(as.character(compList[3]),row.names=1,col.names=c("Symbol","Counts"),stringsAsFactors=F)
+e <- read.table(as.character(compList[4]),row.names=1,col.names=c("Symbol","Counts"),stringsAsFactors=F)
 
 x <- cbind(a,b[rownames(a),],d[rownames(a),],e[rownames(a),])
 group <- factor(c(1,1,2,2))
