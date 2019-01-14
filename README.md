@@ -99,7 +99,7 @@ $ cd ../
 
 The first time STAR is executed, we need to create a genome index as follows:
 ```bash
-$ STAR --runThreadN 12 --runMode genomeGenerate --genomeDir genome --genomeFastaFiles $ genome/C_albicans_SC5314_A21_current_chromosomes.fasta --sjdbGTFtagExonParentTranscript ID
+$ STAR --runThreadN 12 --runMode genomeGenerate --genomeDir genome --genomeFastaFiles genome/C_albicans_SC5314_A21_current_chromosomes.fasta --sjdbGTFtagExonParentTranscript ID
 ```
 a) ---genomeDir = name of the folder containing the genome sequence (in our case, it is just genome)
 
